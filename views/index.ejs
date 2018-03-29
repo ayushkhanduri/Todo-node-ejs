@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
+    
+    <title>Document</title>
+</head>
+<body>
+    <h1><%=title%></h1>
+    <form method="POST" action="/api/addTodo">
+        <input type="text" name="title"/> <button type="submit">Add Item</button> 
+    </form>
+    <p> Things to do : </p>
+    <ul>
+        <% todos.forEach((item)=> { %>
+            <li><input onclick="changeStatus('<%= item._id %>')" type="checkbox" <%= (item.completed)? "checked" : ""%> /> 
+                <span class= <%= (item.completed)? "linethrough" : ""%>  > <%= item.title %> </span>
+                <button onclick="deleteItem('<%= item._id %>')" > X </button>
+            </li>
+        <% })%>
+    </ul>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/js/api.js"> </script>
+</body>
+</html>
